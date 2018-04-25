@@ -71,3 +71,10 @@ TwirlKeys.templateImports ++= Seq("forms._")
 
 // Adds additional packages into conf/routes
 // play.sbt.routes.RoutesKeys.routesImport += "com.example.binders._"
+
+
+assemblyMergeStrategy in assembly := {
+  case n if n.startsWith("reference.conf") => MergeStrategy.concat
+  case PathList("META-INF", xs @ _*) => MergeStrategy.discard
+  case x => MergeStrategy.first
+}
